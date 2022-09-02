@@ -1,2 +1,2 @@
 # kilot
-tiny code generator  for kratos.
+tiny code generator  for quick development.
