@@ -1,6 +1,7 @@
 package kratos
 
 import (
+	"github.com/czyt/kilot/cmd/kilot/kratos/mongo"
 	"github.com/urfave/cli/v2"
 )
 
@@ -14,13 +15,10 @@ func Cmd() []*cli.Command {
 					Name:    "generate",
 					Aliases: []string{"g"},
 					Usage:   "start code generation.please pass at least one arg as model name(multi model names are supported).",
-					Flags:   kratosOptions(),
-					Action:  processGenerate},
+					Flags:   mongo.Options(),
+					Action:  mongo.CodeGenerator,
+				},
 			},
 		},
 	}
-}
-
-func processGenerate(cCtx *cli.Context) error {
-	return nil
 }

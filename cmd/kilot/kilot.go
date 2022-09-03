@@ -9,7 +9,21 @@ import (
 )
 
 func main() {
+	cli.VersionFlag = &cli.BoolFlag{
+		Name:    "version",
+		Aliases: []string{"v"},
+		Usage:   "print tool version.(#^.^#)",
+	}
 	app := &cli.App{
+		Authors: []*cli.Author{
+			{
+				Name:  "czyt",
+				Email: "czyt@w.cn",
+			},
+		},
+		Name:                 "kilot",
+		Version:              "0.0.1",
+		EnableBashCompletion: true,
 		Commands: []*cli.Command{
 			{
 				Name:        "kratos",
