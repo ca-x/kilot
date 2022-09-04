@@ -6,7 +6,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-func CodeGenerator(*cli.Context) error {
+func CodeGenerator(ctx *cli.Context) error {
 	// check model names
 	if len(tplContext.ModelNames.Value()) == 0 {
 		return errors.New("please provide at least one model name use `-mn` option")

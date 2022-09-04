@@ -4,6 +4,7 @@ import (
 	"github.com/czyt/kilot/cmd/kilot/kratos/internal/templateContext"
 	"github.com/czyt/kilot/cmd/kilot/kratos/mongo/internal/templates"
 	"github.com/czyt/kilot/cmd/kilot/pkg/templator"
+	"log"
 )
 
 var (
@@ -11,6 +12,21 @@ var (
 	odmDataCoder = templator.New("odmDataCoder", templates.OdmDataLayerLogicTpl, true)
 )
 
+const (
+	odmCodeGenerationCompletedPrompt = `
+ You should add your code for initDB in somewhere else.
+similar to the code below.
+
+    opt := options.Client().ApplyURI(<DB ADDRESS>)
+	mgm.SetDefaultConfig(nil, <DATABASE NAME>, opt)
+
+then the mgm odm will do the connection itself.`
+)
+
 func OdmCodeWithCtx(ctx templateContext.MongoContext) error {
-	return doCodeGenerationWith(ctx, odmDataCoder, odmBizCoder)
+	if err := doCodeGenerationWith(ctx, odmDataCoder, odmBizCoder); err != nil {
+		return err
+	}
+	log.Println(odmCodeGenerationCompletedPrompt)
+	return nil
 }
