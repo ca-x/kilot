@@ -20,11 +20,11 @@ func doCodeGenerationWith(ctx templateContext.MongoContext, dataWorker, bizWorke
 	}
 	// get all model name
 	for _, model := range ctx.ModelNames.Value() {
-		if err := genCode(bizWorker, model, "biz", ctx); err != nil {
+		if err := genCode(bizWorker, model, ctx.BizLayerCodeDir, ctx); err != nil {
 			log.Printf("generate biz layer code failed:%s\n", err)
 			continue
 		}
-		if err := genCode(dataWorker, model, "data", ctx); err != nil {
+		if err := genCode(dataWorker, model, ctx.DataLayerCodeDir, ctx); err != nil {
 			log.Printf("generate data layer code failed:%s\n", err)
 			continue
 		}
@@ -32,36 +32,38 @@ func doCodeGenerationWith(ctx templateContext.MongoContext, dataWorker, bizWorke
 	return nil
 }
 
-func genCode(worker *templator.TemplateWorker, model string, layer string, ctx templateContext.MongoContext) error {
-	ctxVal := createCtxVal(model, ctx.ModelPrefix, ctx.ModelSuffix)
+func genCode(worker *templator.TemplateWorker, model string, layerDir string, ctx templateContext.MongoContext) error {
+	ctxVal := createCtxVal(model, ctx)
 	modelName := createModelName(model, ctx.ModelPrefix, ctx.ModelSuffix)
 
 	codeBuff, err := worker.Execute(ctxVal)
 	if err != nil {
-		log.Printf("execute %s tpl for model %s failed:%v\n", layer, modelName, err)
+		log.Printf("execute %s tpl for pkg %s failed:%v\n", layerDir, modelName, err)
 		return err
 	}
-	log.Printf("write generated %s layer code for model %s to file.\n", layer, modelName)
+	log.Printf("write generated %s layer code for pkg %s to file.\n", layerDir, modelName)
 	if err := writeSourceCodeFile(
 		ioplus.FilePathFrom(
 			ctx.ModelOutputDir,
-			layer,
+			layerDir,
 			fmt.Sprintf("%s.go", formater.From(modelName).Lower()),
 		),
 		codeBuff.Bytes(),
 	); err != nil {
-		log.Printf("generate %s layer code for model %s failed:%v\n", layer, modelName, err)
+		log.Printf("generate %s layer code for Pkg %s failed:%v\n", layerDir, modelName, err)
 	}
 	return nil
 }
 
-func createCtxVal(model string, modelPrefix string, modelSuffix string) map[string]interface{} {
-	modelName := createModelName(model, modelPrefix, modelSuffix)
+func createCtxVal(model string, ctx templateContext.MongoContext) map[string]interface{} {
+	modelName := createModelName(model, ctx.ModelPrefix, ctx.ModelSuffix)
 	return map[string]interface{}{
 		"ModelName":          formater.From(modelName).ToCamel(),
 		"ModelNameSnackCase": formater.From(modelName).ToSnake(),
 		"ModelNameLowCase":   formater.From(modelName).Untitle(),
 		"ModelIdentifier":    formater.From(modelName).Untitle()[:1],
+		"BizPkg":             formater.From(ctx.BizLayerCodeDir).Lower(),
+		"DataPkg":            formater.From(ctx.DataLayerCodeDir).Lower(),
 	}
 }
 

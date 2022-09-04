@@ -6,12 +6,14 @@ import (
 )
 
 const (
-	userOdmFlag     = "use-odm"
-	formatFlag      = "format"
-	modelSuffixFlag = "model-suffix"
-	modelPrefixFlag = "model-prefix"
-	modelNamesFlag  = "model-names"
-	modelOutputFlag = "model-output-dir"
+	userOdmFlag      = "use-odm"
+	formatFlag       = "format"
+	modelSuffixFlag  = "model-suffix"
+	modelPrefixFlag  = "model-prefix"
+	bizLayerCodeDir  = "layer-biz-dir"
+	dataLayerCodeDir = "layer-data-dir"
+	modelNamesFlag   = "model-names"
+	modelOutputFlag  = "model-output-dir"
 )
 
 var (
@@ -46,6 +48,20 @@ func Options() []cli.Flag {
 			Value:       "",
 			Usage:       "set model name prefix `Prefix`.default is empty.",
 			Destination: &tplContext.ModelPrefix,
+		},
+		&cli.StringFlag{
+			Name:        bizLayerCodeDir,
+			Aliases:     []string{"bd"},
+			Value:       "biz",
+			Usage:       "set biz layer code store Dir `DIR`.default is `biz`.",
+			Destination: &tplContext.BizLayerCodeDir,
+		},
+		&cli.StringFlag{
+			Name:        dataLayerCodeDir,
+			Aliases:     []string{"dd"},
+			Value:       "data",
+			Usage:       "set data layer code store Dir `DIR`.default is `data`.",
+			Destination: &tplContext.DataLayerCodeDir,
 		},
 		&cli.StringFlag{
 			Name:        modelOutputFlag,
