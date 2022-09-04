@@ -11,6 +11,7 @@ const (
 	modelSuffixFlag = "model-suffix"
 	modelPrefixFlag = "model-prefix"
 	modelNamesFlag  = "model-names"
+	modelOutputFlag = "model-output-dir"
 )
 
 var (
@@ -34,19 +35,28 @@ func Options() []cli.Flag {
 		},
 		&cli.StringFlag{
 			Name:        modelSuffixFlag,
+			Aliases:     []string{"s"},
 			Value:       "",
 			Usage:       "set model name suffix `Suffix` .default is empty.",
 			Destination: &tplContext.ModelSuffix,
 		},
 		&cli.StringFlag{
 			Name:        modelPrefixFlag,
+			Aliases:     []string{"p"},
 			Value:       "",
 			Usage:       "set model name prefix `Prefix`.default is empty.",
 			Destination: &tplContext.ModelPrefix,
 		},
+		&cli.StringFlag{
+			Name:        modelOutputFlag,
+			Aliases:     []string{"d"},
+			Value:       "",
+			Usage:       "set model save dir `Dir`.if not set tool working dir will be used.",
+			Destination: &tplContext.ModelOutputDir,
+		},
 		&cli.StringSliceFlag{
 			Name:        modelNamesFlag,
-			Aliases:     []string{"mn"},
+			Aliases:     []string{"n"},
 			Value:       nil,
 			Usage:       "set model names `ModelName` for mongo code generate.multi model names supported.",
 			Required:    true,

@@ -15,26 +15,26 @@ type {{.ModelNameLowCase}}DataRepo struct {
 	// data *Data
 }
 
-func (d {{.ModelNameLowCase}}DataRepo) Create{{.ModelName}}(ctx context.Context, data *biz.{{.ModelName}}, opts ...*options.InsertOneOptions) error {
-	return mgm.Coll(d.model).CreateWithCtx(ctx, data, opts...)
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Create{{.ModelName}}(ctx context.Context, data *biz.{{.ModelName}}, opts ...*options.InsertOneOptions) error {
+	return mgm.Coll({{.ModelIdentifier}}.model).CreateWithCtx(ctx, data, opts...)
 }
 
-func (d {{.ModelNameLowCase}}DataRepo) FindOne{{.ModelName}}(ctx context.Context, id string, opts ...*options.FindOneOptions) (result *biz.{{.ModelName}}, err error) {
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) FindOne{{.ModelName}}(ctx context.Context, id string, opts ...*options.FindOneOptions) (result *biz.{{.ModelName}}, err error) {
 	recordId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return nil, err
 	}
 	filter := bson.M{"_id": recordId}
-	err = mgm.Coll(d.model).FindOne(ctx, filter, opts...).Decode(result)
+	err = mgm.Coll({{.ModelIdentifier}}.model).FindOne(ctx, filter, opts...).Decode(result)
 	if err != nil {
 		return nil, err
 	}
 	return
 }
 
-func (d {{.ModelNameLowCase}}DataRepo) FindAll{{.ModelName}}(ctx context.Context, opts ...*options.FindOptions) (result []*biz.{{.ModelName}}, err error) {
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) FindAll{{.ModelName}}(ctx context.Context, opts ...*options.FindOptions) (result []*biz.{{.ModelName}}, err error) {
 	filter := bson.M{}
-	cursor, err := mgm.Coll(d.model).Find(ctx, filter, opts...)
+	cursor, err := mgm.Coll({{.ModelIdentifier}}.model).Find(ctx, filter, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,25 +45,25 @@ func (d {{.ModelNameLowCase}}DataRepo) FindAll{{.ModelName}}(ctx context.Context
 	return
 }
 
-func (d {{.ModelNameLowCase}}DataRepo) Update{{.ModelName}}(ctx context.Context, id string, data *biz.{{.ModelName}}, opts ...*options.FindOneAndUpdateOptions) error {
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Update{{.ModelName}}(ctx context.Context, id string, data *biz.{{.ModelName}}, opts ...*options.FindOneAndUpdateOptions) error {
 	recordId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return err
 	}
 	filter := bson.M{"_id": recordId}
-	if updateResult := mgm.Coll(d.model).FindOneAndUpdate(ctx, filter, data, opts...); updateResult.Err() != nil {
+	if updateResult := mgm.Coll({{.ModelIdentifier}}.model).FindOneAndUpdate(ctx, filter, data, opts...); updateResult.Err() != nil {
 		return updateResult.Err()
 	}
 	return nil
 }
 
-func (d {{.ModelNameLowCase}}DataRepo) Delete{{.ModelName}}(ctx context.Context, id string, opts ...*options.FindOneAndDeleteOptions) error {
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Delete{{.ModelName}}(ctx context.Context, id string, opts ...*options.FindOneAndDeleteOptions) error {
 	recordId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return err
 	}
 	filter := bson.M{"_id": recordId}
-	if deleteResult := mgm.Coll(d.model).FindOneAndDelete(ctx, filter, opts...); deleteResult.Err() != nil {
+	if deleteResult := mgm.Coll({{.ModelIdentifier}}.model).FindOneAndDelete(ctx, filter, opts...); deleteResult.Err() != nil {
 		return deleteResult.Err()
 	}
 	return nil
