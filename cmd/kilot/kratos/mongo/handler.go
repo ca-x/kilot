@@ -16,7 +16,3 @@ func CodeGenerator(*cli.Context) error {
 	}
 	return generate.NormalCodeWithCtx(tplContext)
 }
-
-//func generateOdmCode(ctx TemplateContext) {
-//
-//}
