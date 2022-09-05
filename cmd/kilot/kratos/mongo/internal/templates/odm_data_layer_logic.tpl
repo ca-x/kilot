@@ -19,17 +19,13 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Create{{.ModelName}}(c
 	return mgm.Coll({{.ModelIdentifier}}.model).CreateWithCtx(ctx, data, opts...)
 }
 
-func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) FindOne{{.ModelName}}(ctx context.Context, id string, opts ...*options.FindOneOptions) (result *biz.{{.ModelName}}, err error) {
-	recordId, err := primitive.ObjectIDFromHex(id)
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) FindOne{{.ModelName}}(ctx context.Context, id string) ( *biz.{{.ModelName}},  error) {
+	result:=&biz.{{.ModelName}}{}
+	err = mgm.Coll({{.ModelIdentifier}}.model).FindByIDWithCtx(ctx, id, result)
 	if err != nil {
 		return nil, err
 	}
-	filter := bson.M{"_id": recordId}
-	err = mgm.Coll({{.ModelIdentifier}}.model).FindOne(ctx, filter, opts...).Decode(result)
-	if err != nil {
-		return nil, err
-	}
-	return
+	return result,nil
 }
 
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) FindAll{{.ModelName}}(ctx context.Context, opts ...*options.FindOptions) (result []*biz.{{.ModelName}}, err error) {

@@ -8,7 +8,7 @@ import (
 
 type {{.ModelName}}Provider interface {
 	Create{{.ModelName}}(ctx context.Context, data *{{.ModelName}}, opts ...*options.InsertOneOptions) error
-	FindOne{{.ModelName}}(ctx context.Context, id string, opts ...*options.FindOneOptions) (result *{{.ModelName}}, err error)
+	FindOne{{.ModelName}}(ctx context.Context, id string) (result *{{.ModelName}}, err error)
 	FindAll{{.ModelName}}(ctx context.Context, opts ...*options.FindOptions) (result []*{{.ModelName}}, err error)
 	Update{{.ModelName}}(ctx context.Context, id string, data *{{.ModelName}}, opts ...*options.FindOneAndUpdateOptions) error
 	Delete{{.ModelName}}(ctx context.Context, id string, opts ...*options.FindOneAndDeleteOptions) error
