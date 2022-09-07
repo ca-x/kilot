@@ -7,6 +7,7 @@ import (
 
 const (
 	userOdmFlag      = "use-odm"
+	enableSoftDelete = "with-soft-delete"
 	formatFlag       = "format"
 	modelSuffixFlag  = "model-suffix"
 	modelPrefixFlag  = "model-prefix"
@@ -27,6 +28,13 @@ func Options() []cli.Flag {
 			Value:       true,
 			Usage:       "this flag set whether to use mongo odm (use mgm).",
 			Destination: &tplContext.UseOdm,
+		},
+		&cli.BoolFlag{
+			Name:        enableSoftDelete,
+			Aliases:     []string{"sd"},
+			Value:       false,
+			Usage:       "this flag set whether to generate soft delete feature code.",
+			Destination: &tplContext.WithSoftDelete,
 		},
 		&cli.BoolFlag{
 			Name:        formatFlag,

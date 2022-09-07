@@ -58,6 +58,7 @@ func genCode(worker *templator.TemplateWorker, model string, layerDir string, ct
 func createCtxVal(model string, ctx templateContext.MongoContext) map[string]interface{} {
 	modelName := createModelName(model, ctx.ModelPrefix, ctx.ModelSuffix)
 	return map[string]interface{}{
+		"SoftDeleteFeature":  ctx.WithSoftDelete,
 		"ModelName":          formater.From(modelName).ToCamel(),
 		"ModelNameSnackCase": formater.From(modelName).ToSnake(),
 		"ModelNameLowCase":   formater.From(modelName).Untitle(),
