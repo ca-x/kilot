@@ -119,7 +119,7 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) SoftDelete{{.ModelName
 	return {{.ModelIdentifier}}.Update{{.ModelName}}(ctx, filter,
 		bson.M{operator.Set: bson.M{"is_deleted": true,
 			"deleted_at": primitive.NewDateTimeFromTime(time.Now()),
-		}})
+		}}, opts...)
 }
 {{end}}
 
