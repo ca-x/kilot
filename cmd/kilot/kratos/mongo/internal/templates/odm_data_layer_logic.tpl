@@ -3,13 +3,10 @@ package {{.DataPkg}}
 import (
 	"context"
 	"github.com/Kamva/mgm"
-	"github.com/Kamva/mgm/operator"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"{{.BizPkg}}"
-	"time"
 )
 
 type {{.ModelNameLowCase}}DataRepo struct {

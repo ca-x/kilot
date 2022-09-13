@@ -11,8 +11,8 @@ import (
 
 func doCodeGenerationWith(ctx templateContext.MongoContext, dataWorker, bizWorker *templator.TemplateWorker) error {
 	if !ctx.FormatCode {
-		odmBizCoder.ChangeCodeFormatOption(false)
-		odmDataCoder.ChangeCodeFormatOption(false)
+		dataWorker.ChangeCodeFormatOption(false)
+		bizWorker.ChangeCodeFormatOption(false)
 	}
 	// check output dir
 	if ctx.ModelOutputDir == "" || !ioplus.IsDirExist(ctx.ModelOutputDir) {
