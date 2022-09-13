@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-type demoDataRepo struct {
+type {{.ModelNameLowCase}}DataRepo struct {
 	model mgm.Model
 	// Todo: add your data and loggers here
 	// data *Data
@@ -117,9 +117,9 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) SoftDelete{{.ModelName
 	}}
 	return mgm.Coll({{.ModelIdentifier}}.model).UpdateMany(ctx, filter, updateData, opts...)
 }
-{{end}}
+{{- end}}
 func New{{.ModelName}}DataRepo() {{.BizPkg}}.{{.ModelName}}Provider {
-	return &demoDataRepo{
+	return &{{.ModelNameLowCase}}DataRepo{
 		model: &{{.BizPkg}}.{{.ModelName}}{},
 	}
 }

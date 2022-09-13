@@ -25,12 +25,14 @@ type {{.ModelName}}Provider interface {
     SoftDeleteOne{{.ModelName}}(ctx context.Context, filter interface{}, opts ...*options.FindOneAndUpdateOptions) *mongo.SingleResult
     SoftDeleteOne{{.ModelName}}ById(ctx context.Context, id string, opts ...*options.FindOneAndUpdateOptions) *mongo.SingleResult
     SoftDelete{{.ModelName}}(ctx context.Context, filter interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error)
-    {{end}
+    {{end}}
 }
 
 type {{.ModelName}} struct {
 	mgm.DefaultModel `bson:",inline"`
 	// TODO: add field for your own business
+	{{if .SoftDeleteFeature}}
     IsDeleted bool      `bson:"is_deleted" json:"is_deleted"`
     DeletedAt time.Time `bson:"deleted_at" json:"deleted_at"`
+    {{- end}}
 }

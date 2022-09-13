@@ -121,7 +121,7 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) SoftDelete{{.ModelName
 			"deleted_at": primitive.NewDateTimeFromTime(time.Now()),
 		}}, opts...)
 }
-{{end}}
+{{- end}}
 
 func New{{.ModelName}}DataRepo(db *mongo.Database) {{.BizPkg}}.{{.ModelName}}Provider {
 	return &{{.ModelNameLowCase}}DataRepo{
