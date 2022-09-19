@@ -116,6 +116,9 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) SoftDelete{{.ModelName
 }
 {{- end}}
 func New{{.ModelName}}DataRepo() {{.BizPkg}}.{{.ModelName}}Provider {
+    // Todo:Add below line code to apply the default connection
+    // mgm.SetDefaultConfig(nil, data.dbName, data.mongoOpt)
+    // NOTE: mongoOpt should new from biz layer `opt := options.Client().ApplyURI(c.Mongo.Addr)`
 	return &{{.ModelNameLowCase}}DataRepo{
 		model: &{{.BizPkg}}.{{.ModelName}}{},
 	}
