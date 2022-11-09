@@ -2,7 +2,7 @@ package {{.BizPkg}}
 
 import (
 	"context"
-	"github.com/Kamva/mgm"
+	"github.com/Kamva/mgm/v3"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
