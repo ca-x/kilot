@@ -33,7 +33,7 @@ func (t *TemplateWorker) ChangeTemplateOption(tpl string) {
 	t.tpl = tpl
 }
 
-func (t *TemplateWorker) Execute(ctxValue interface{}) (*bytes.Buffer, error) {
+func (t *TemplateWorker) Execute(ctxValue any) (*bytes.Buffer, error) {
 	tpl, err := template.New(t.name).Parse(t.tpl)
 	if err != nil {
 		return nil, errors.New(fmt.Sprintf("templates parse error:%v", t.tpl))
@@ -45,11 +45,11 @@ func (t *TemplateWorker) Execute(ctxValue interface{}) (*bytes.Buffer, error) {
 	if !t.formatCode {
 		return buf, nil
 	}
-	if formatedCode, err := formater.FormatCode(buf.Bytes()); err != nil {
+	if formattedCode, err := formater.FormatCode(buf.Bytes()); err != nil {
 		return nil, err
 	} else {
 		buf.Reset()
-		buf.Write(formatedCode)
+		buf.Write(formattedCode)
 	}
 	return buf, nil
 }

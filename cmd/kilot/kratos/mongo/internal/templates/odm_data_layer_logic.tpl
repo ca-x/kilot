@@ -11,8 +11,8 @@ import (
 
 type {{.ModelNameLowCase}}DataRepo struct {
 	model mgm.Model
-	// Todo: add your data and loggers here
-	// data *Data
+    data  *Data
+    log   *log.Helper
 }
 
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) CreateOne{{.ModelName}}(ctx context.Context, data *{{.BizPkg}}.{{.ModelName}}, opts ...*options.InsertOneOptions) (result *mongo.InsertOneResult, err error) {
@@ -115,11 +115,14 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) SoftDelete{{.ModelName
 	return mgm.Coll({{.ModelIdentifier}}.model).UpdateMany(ctx, filter, updateData, opts...)
 }
 {{- end}}
-func New{{.ModelName}}DataRepo() {{.BizPkg}}.{{.ModelName}}Provider {
+func New{{.ModelName}}DataRepo(data *Data) {{.BizPkg}}.{{.ModelName}}Provider {
     // Todo:Add below line code to apply the default connection
     // mgm.SetDefaultConfig(nil, data.dbName, data.mongoOpt)
     // NOTE: mongoOpt should new from biz layer `opt := options.Client().ApplyURI(c.Mongo.Addr)`
+    // Example:
+    // mgm.SetDefaultConfig(nil, data.dbName, data.mongoOpt)
 	return &{{.ModelNameLowCase}}DataRepo{
 		model: &{{.BizPkg}}.{{.ModelName}}{},
+		// log:   log.NewHelper(log.With(data.log, "module", "data/{{.ModelName}}")),
 	}
 }
