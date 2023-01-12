@@ -16,6 +16,9 @@ type {{.ModelNameLowCase}}DataRepo struct {
 }
 
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) CreateOne{{.ModelName}}(ctx context.Context, data *{{.BizPkg}}.{{.ModelName}}, opts ...*options.InsertOneOptions) (result *mongo.InsertOneResult, err error) {
+	if data.CreatedAt.IsZero() {
+       data.CreatedAt = time.Now()
+    }
 	return mgm.Coll({{.ModelIdentifier}}.model).InsertOne(ctx, data, opts...)
 }
 
