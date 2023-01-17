@@ -14,6 +14,7 @@ const (
 	bizLayerCodeDir  = "layer-biz-dir"
 	dataLayerCodeDir = "layer-data-dir"
 	modelNamesFlag   = "model-names"
+	useCaseFlag      = "use-case-name"
 	modelOutputFlag  = "model-output-dir"
 )
 
@@ -77,6 +78,13 @@ func Options() []cli.Flag {
 			Value:       "",
 			Usage:       "set model save dir `Dir`.if not set tool working dir will be used.",
 			Destination: &tplContext.ModelOutputDir,
+		},
+		&cli.StringFlag{
+			Name:        useCaseFlag,
+			Aliases:     []string{"uc"},
+			Value:       "",
+			Usage:       "set useCase name if you want to generate useCase .if empty,useCase will not generated.",
+			Destination: &tplContext.UseCase,
 		},
 		&cli.StringSliceFlag{
 			Name:        modelNamesFlag,

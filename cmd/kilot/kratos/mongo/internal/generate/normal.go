@@ -8,8 +8,9 @@ import (
 )
 
 var (
-	normalBizCoder  = templator.New("normalBizCoder", templates.NormalBizLayerLogicTpl, true)
-	normalDataCoder = templator.New("normalDataCoder", templates.NormalDataLayerLogicTpl, true)
+	normalBizCoder     = templator.New("normalBizCoder", templates.NormalBizLayerLogicTpl, true)
+	normalDataCoder    = templator.New("normalDataCoder", templates.NormalDataLayerLogicTpl, true)
+	normalUseCaseCoder = templator.New("normalUseCaseCoder", templates.NormalUseCaseLogicTpl, true)
 )
 
 const (

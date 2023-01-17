@@ -18,6 +18,7 @@ func doCodeGenerationWith(ctx templateContext.MongoContext, dataWorker, bizWorke
 	if ctx.ModelOutputDir == "" || !ioplus.IsDirExist(ctx.ModelOutputDir) {
 		ctx.ModelOutputDir = ioplus.GetWorkingDir()
 	}
+
 	// get all model name
 	for _, model := range ctx.ModelNames.Value() {
 		if err := genCode(bizWorker, model, ctx.BizLayerCodeDir, ctx); err != nil {
@@ -28,6 +29,22 @@ func doCodeGenerationWith(ctx templateContext.MongoContext, dataWorker, bizWorke
 			log.Printf("generate data layer code failed:%s\n", err)
 			continue
 		}
+	}
+
+	if ctx.UseCase != "" {
+		// generate UseCase code
+		useCaseDataContext := make(map[string]any, 4)
+		useCaseDataContext["UseCaseName"] = formater.From(ctx.UseCase).ToCamel()
+		useCaseDataContext["UseCaseIdentifier"] = formater.From(ctx.UseCase).Untitle()[:1]
+		worker := normalUseCaseCoder
+		if ctx.UseOdm {
+			worker = odmUseCaseCoder
+		}
+		if err := genCode(worker, ctx.UseCase, ctx.BizLayerCodeDir, ctx); err != nil {
+			log.Printf("generate useCase layer code failed:%s\n", err)
+			return err
+		}
+
 	}
 	return nil
 }

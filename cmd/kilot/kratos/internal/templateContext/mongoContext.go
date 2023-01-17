@@ -11,5 +11,6 @@ type MongoContext struct {
 	ModelOutputDir   string
 	BizLayerCodeDir  string
 	DataLayerCodeDir string
+	UseCase          string
 	ModelNames       cli.StringSlice
 }

@@ -22,7 +22,7 @@ func main() {
 			},
 		},
 		Name:                 "kilot",
-		Version:              "0.1.11",
+		Version:              "0.1.12b1",
 		EnableBashCompletion: true,
 		Commands: []*cli.Command{
 			{

@@ -8,8 +8,9 @@ import (
 )
 
 var (
-	odmBizCoder  = templator.New("odmBizCoder", templates.OdmBizLayerLogicTpl, true)
-	odmDataCoder = templator.New("odmDataCoder", templates.OdmDataLayerLogicTpl, true)
+	odmBizCoder     = templator.New("odmBizCoder", templates.OdmBizLayerLogicTpl, true)
+	odmDataCoder    = templator.New("odmDataCoder", templates.OdmDataLayerLogicTpl, true)
+	odmUseCaseCoder = templator.New("odmUseCaseCoder", templates.OdmUseCaseLogicTpl, true)
 )
 
 const (
