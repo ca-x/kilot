@@ -31,3 +31,5 @@ go install github.com/czyt/kilot/cmd/kilot@latest
 ```
 ## usage
 after installed，run `kilot -h` for usage help.
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fczyt%2Fkilot.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fczyt%2Fkilot?ref=badge_large)
