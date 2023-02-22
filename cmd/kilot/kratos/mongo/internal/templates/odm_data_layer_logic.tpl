@@ -15,6 +15,10 @@ type {{.ModelNameLowCase}}DataRepo struct {
     log   *log.Helper
 }
 
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Create{{.ModelName}}(ctx context.Context, data *{{.BizPkg}}.{{.ModelName}}, opts ...*options.InsertOneOptions) error {
+	return mgm.Coll({{.ModelIdentifier}}.model).CreateWithCtx(ctx, data, opts...)
+}
+
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) CreateOne{{.ModelName}}(ctx context.Context, data *{{.BizPkg}}.{{.ModelName}}, opts ...*options.InsertOneOptions) (result *mongo.InsertOneResult, err error) {
 	if data.CreatedAt.IsZero() {
        data.CreatedAt = time.Now()
