@@ -8,6 +8,8 @@ import (
 )
 
 type {{.ModelName}}Provider interface {
+    Aggregate{{.ModelName}}(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions) (*mongo.Cursor, error)
+    Create{{.ModelName}}(ctx context.Context, data *{{.ModelName}}, opts ...*options.InsertOneOptions) error
 	CreateOne{{.ModelName}}(ctx context.Context, data *{{.ModelName}}, opts ...*options.InsertOneOptions) (result *mongo.InsertOneResult, err error)
 	CreateMany{{.ModelName}}(ctx context.Context, data []interface{}, opts ...*options.InsertManyOptions) (result *mongo.InsertManyResult, err error)
 	FindOne{{.ModelName}}(ctx context.Context, filter interface{}, opts ...*options.FindOneOptions) (result *{{.ModelName}}, err error)
