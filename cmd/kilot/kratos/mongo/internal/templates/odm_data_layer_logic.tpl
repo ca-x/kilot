@@ -16,7 +16,7 @@ type {{.ModelNameLowCase}}DataRepo struct {
 }
 
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Aggregate{{.ModelName}}(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions) (*mongo.Cursor, error) {
-	return mgm.Coll(p.model).Aggregate(ctx, pipeline, opts...)
+	return mgm.Coll({{.ModelIdentifier}}.model).Aggregate(ctx, pipeline, opts...)
 }
 
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Create{{.ModelName}}(ctx context.Context, data *{{.BizPkg}}.{{.ModelName}}, opts ...*options.InsertOneOptions) error {
