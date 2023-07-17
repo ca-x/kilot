@@ -11,7 +11,9 @@ type {{.ModelName}}Provider interface {
     Aggregate{{.ModelName}}(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions) (*mongo.Cursor, error)
     Create{{.ModelName}}(ctx context.Context, data *{{.ModelName}}, opts ...*options.InsertOneOptions) error
 	CreateOne{{.ModelName}}(ctx context.Context, data *{{.ModelName}}, opts ...*options.InsertOneOptions) (result *mongo.InsertOneResult, err error)
+	CreateOne{{.ModelName}}Index(ctx context.Context, index mongo.IndexModel, opts ...*options.CreateIndexesOptions) (result string, err error)
 	CreateMany{{.ModelName}}(ctx context.Context, data []interface{}, opts ...*options.InsertManyOptions) (result *mongo.InsertManyResult, err error)
+	CreateMany{{.ModelName}}Index(ctx context.Context, index []mongo.IndexModel, opts ...*options.CreateIndexesOptions) (result []string, err error)
 	FindOne{{.ModelName}}(ctx context.Context, filter interface{}, opts ...*options.FindOneOptions) (result *{{.ModelName}}, err error)
 	FindOne{{.ModelName}}ById(ctx context.Context, id string, opts ...*options.FindOneOptions) (result *{{.ModelName}}, err error)
 	Find{{.ModelName}}(ctx context.Context, filter interface{}, opts ...*options.FindOptions) (result []*{{.ModelName}}, err error)

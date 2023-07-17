@@ -30,8 +30,16 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) CreateOne{{.ModelName}
 	return mgm.Coll({{.ModelIdentifier}}.model).InsertOne(ctx, data, opts...)
 }
 
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) CreateOne{{.ModelName}}Index(ctx context.Context, index mongo.IndexModel, opts ...*options.CreateIndexesOptions) (result string, err error) {
+	return mgm.Coll({{.ModelIdentifier}}.model).Indexes().CreateOne(ctx, index, opts...)
+}
+
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) CreateMany{{.ModelName}}(ctx context.Context, data []interface{}, opts ...*options.InsertManyOptions) (result *mongo.InsertManyResult, err error) {
 	return mgm.Coll({{.ModelIdentifier}}.model).InsertMany(ctx, data, opts...)
+}
+
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Create{{.ModelName}}SessionIndex(ctx context.Context, indexes []mongo.IndexModel, opts ...*options.CreateIndexesOptions) (result []string, err error) {
+	return mgm.Coll({{.ModelIdentifier}}.model).Indexes().CreateMany(ctx, indexes, opts...)
 }
 
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) FindOne{{.ModelName}}(ctx context.Context, filter interface{}, opts ...*options.FindOneOptions) (result *{{.BizPkg}}.{{.ModelName}}, err error) {
