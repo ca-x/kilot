@@ -38,7 +38,7 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) CreateMany{{.ModelName
 	return mgm.Coll({{.ModelIdentifier}}.model).InsertMany(ctx, data, opts...)
 }
 
-func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Create{{.ModelName}}SessionIndex(ctx context.Context, indexes []mongo.IndexModel, opts ...*options.CreateIndexesOptions) (result []string, err error) {
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) CreateMany{{.ModelName}}Index(ctx context.Context, indexes []mongo.IndexModel, opts ...*options.CreateIndexesOptions) (result []string, err error) {
 	return mgm.Coll({{.ModelIdentifier}}.model).Indexes().CreateMany(ctx, indexes, opts...)
 }
 
