@@ -58,6 +58,7 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Find{{.ModelName}}(ctx
 	}
 	return result, nil
 }
+//TODO:implement ReplaceOne{{.ModelName}} and ReplaceOne{{.ModelName}}ById
 
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Estimated{{.ModelName}}Count(ctx context.Context, opts ...*options.EstimatedDocumentCountOptions) (int64, error) {
 	return {{.ModelIdentifier}}.coll.EstimatedDocumentCount(ctx, opts...)

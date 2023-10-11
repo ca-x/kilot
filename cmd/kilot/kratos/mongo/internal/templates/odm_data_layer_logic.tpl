@@ -70,6 +70,24 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Find{{.ModelName}}(ctx
 	return result, nil
 }
 
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) ReplaceOne{{.ModelName}}(ctx context.Context, filter interface{}, data *{{.BizPkg}}.{{.ModelName}}, opts ...*options.ReplaceOptions) (result *mongo.UpdateResult, err error) {
+	if data.CreatedAt.IsZero() {
+		data.CreatedAt = time.Now()
+	}
+	return mgm.Coll({{.ModelIdentifier}}.model).ReplaceOne(ctx, filter, data, opts...)
+}
+
+func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) ReplaceOne{{.ModelName}}ById(ctx context.Context, id string, data *{{.BizPkg}}.{{.ModelName}}, opts ...*options.ReplaceOptions) (result *mongo.UpdateResult, err error) {
+	recordId, err := t.model.PrepareID(id)
+	if err != nil {
+		return nil, err
+	}
+	if data.CreatedAt.IsZero() {
+		data.CreatedAt = time.Now()
+	}
+	return mgm.Coll({{.ModelIdentifier}}.model).ReplaceOne(ctx, bson.M{"_id": recordId}, data, opts...)
+}
+
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) Estimated{{.ModelName}}Count(ctx context.Context, opts ...*options.EstimatedDocumentCountOptions) (int64, error) {
 	return mgm.Coll({{.ModelIdentifier}}.model).EstimatedDocumentCount(ctx, opts...)
 }
