@@ -78,7 +78,7 @@ func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) ReplaceOne{{.ModelName
 }
 
 func ({{.ModelIdentifier}} {{.ModelNameLowCase}}DataRepo) ReplaceOne{{.ModelName}}ById(ctx context.Context, id string, data *{{.BizPkg}}.{{.ModelName}}, opts ...*options.ReplaceOptions) (result *mongo.UpdateResult, err error) {
-	recordId, err := t.model.PrepareID(id)
+	recordId, err := {{.ModelIdentifier}}.model.PrepareID(id)
 	if err != nil {
 		return nil, err
 	}
