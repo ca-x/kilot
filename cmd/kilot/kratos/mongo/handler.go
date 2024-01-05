@@ -2,7 +2,7 @@ package mongo
 
 import (
 	"errors"
-	"github.com/czyt/kilot/cmd/kilot/kratos/mongo/internal/generate"
+	"github.com/ca-x/kilot/cmd/kilot/kratos/mongo/internal/generate"
 	"github.com/urfave/cli/v2"
 )
 

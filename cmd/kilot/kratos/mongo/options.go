@@ -1,7 +1,7 @@
 package mongo
 
 import (
-	"github.com/czyt/kilot/cmd/kilot/kratos/internal/templateContext"
+	"github.com/ca-x/kilot/cmd/kilot/kratos/internal/templateContext"
 	"github.com/urfave/cli/v2"
 )
 

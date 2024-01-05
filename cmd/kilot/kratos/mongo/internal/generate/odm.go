@@ -1,9 +1,9 @@
 package generate
 
 import (
-	"github.com/czyt/kilot/cmd/kilot/kratos/internal/templateContext"
-	"github.com/czyt/kilot/cmd/kilot/kratos/mongo/internal/templates"
-	"github.com/czyt/kilot/cmd/kilot/pkg/templator"
+	"github.com/ca-x/kilot/cmd/kilot/kratos/internal/templateContext"
+	"github.com/ca-x/kilot/cmd/kilot/kratos/mongo/internal/templates"
+	"github.com/ca-x/kilot/cmd/kilot/pkg/templator"
 	"log"
 )
 

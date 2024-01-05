@@ -29,7 +29,7 @@ OPTIONS:
 ## install
 run command to install
 ```bash
-go install github.com/czyt/kilot/cmd/kilot@latest
+go install github.com/ca-x/kilot/cmd/kilot@latest
 ```
 ## usage
 after installed，run `kilot -h` for usage help.

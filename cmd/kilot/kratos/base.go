@@ -1,7 +1,7 @@
 package kratos
 
 import (
-	"github.com/czyt/kilot/cmd/kilot/kratos/mongo"
+	"github.com/ca-x/kilot/cmd/kilot/kratos/mongo"
 	"github.com/urfave/cli/v2"
 )
 

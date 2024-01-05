@@ -2,10 +2,10 @@ package generate
 
 import (
 	"fmt"
-	"github.com/czyt/kilot/cmd/kilot/kratos/internal/templateContext"
-	"github.com/czyt/kilot/cmd/kilot/pkg/formater"
-	"github.com/czyt/kilot/cmd/kilot/pkg/ioplus"
-	"github.com/czyt/kilot/cmd/kilot/pkg/templator"
+	"github.com/ca-x/kilot/cmd/kilot/kratos/internal/templateContext"
+	"github.com/ca-x/kilot/cmd/kilot/pkg/formater"
+	"github.com/ca-x/kilot/cmd/kilot/pkg/ioplus"
+	"github.com/ca-x/kilot/cmd/kilot/pkg/templator"
 	"log"
 )
 

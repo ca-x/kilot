@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/czyt/kilot/cmd/kilot/kratos"
+	"github.com/ca-x/kilot/cmd/kilot/kratos"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
@@ -22,7 +22,7 @@ func main() {
 			},
 		},
 		Name:                 "kilot",
-		Version:              "0.1.19",
+		Version:              "0.1.20",
 		EnableBashCompletion: true,
 		Commands: []*cli.Command{
 			{

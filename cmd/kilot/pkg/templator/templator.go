@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/czyt/kilot/cmd/kilot/pkg/formater"
+	"github.com/ca-x/kilot/cmd/kilot/pkg/formater"
 	"text/template"
 )
 
